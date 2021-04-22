@@ -15,7 +15,7 @@ export class AppComponent implements AfterViewInit {
     title: '',
     type: 'ColumnChart',
     data: [
-      ['2020/4/6', 8136000, 19500000, 81360, 81360],
+      ['2020/4/6', 8136000, 19500000, 8136021, 8136021],
       ['2020/4/7', 8538000, 3470000, 81360, 81360],
       ['2020/4/8', 2244000, 2244000, 81360, 81360],
       ['2020/4/9', 3470000, 8538000, 81360, 81360],
@@ -43,7 +43,7 @@ export class AppComponent implements AfterViewInit {
           max: 19500000
         }
       },
-      colors: ['#55D6BE', '#ACFCD9', '#7D5BA6', '#FC6471'],
+      colors: ['#00EAD0', '#814EFA', '#CB75EB', '#D4675F'], //F6BC6F
       // legend: { position: 'top', maxLines: 3 },
     }
   }
