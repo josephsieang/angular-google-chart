@@ -11,7 +11,7 @@ export class AppComponent implements AfterViewInit {
   @ViewChild('gColChart') gColChart: GoogleChartComponent;
   @ViewChild('gLineChart') gLineChart: GoogleChartComponent;
   title = 'fe-google-chart';
-  selectedProject = ['Gyro', 'Palau', 'Mix Model', 'QTEst']
+  selectedProject = ['Project', 'Super Project', 'Fight Project', 'QTEst']
   colChart = {
     title: '',
     type: 'ColumnChart',
@@ -126,6 +126,16 @@ export class AppComponent implements AfterViewInit {
     if (oldWidth !== newWidth) {
       this.gColChart.wrapperReady$.subscribe((c) => {
         c.setOptions({...this.colChart.options, width: newWidth})
+      })
+    }
+  }
+
+  onLineChartResized(event: ResizedEvent): void {
+    const oldWidth = event.oldWidth;
+    const newWidth = event.newWidth;
+    if (oldWidth !== newWidth) {
+      this.gLineChart.wrapperReady$.subscribe((c) => {
+        c.setOptions({...this.lineChart.options, width: newWidth})
       })
     }
   }

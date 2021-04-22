@@ -28,7 +28,7 @@
     <div class="title">Other KPIs</div>
   </div>
   
-  <div class="container container-line-chart" id="container-line-chart" (resized)="onResized($event)">
+  <div class="container container-line-chart" id="container-line-chart" (resized)="onLineChartResized($event)">
     <google-chart
       #gLineChart
       [title]="lineChart.title"
