@@ -26,6 +26,12 @@
 <div class="container container-other-kpi">
   <div class="other-kpi-header">
     <div class="title">Other KPIs</div>
+    <div class="legends">
+      <div class="legend" *ngFor="let color of colChart.options.colors; let i = index">
+        <div class="indicator" [ngStyle]="{'background-color': color}"></div>
+        <span class="label">{{ selectedProject[i] }}</span>
+      </div>
+    </div>
   </div>
   
   <div class="container container-line-chart" id="container-line-chart" (resized)="onLineChartResized($event)">
