@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GoogleChartsModule } from 'angular-google-charts';
+import { AngularResizedEventModule } from 'angular-resize-event';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { GoogleChartsModule } from 'angular-google-charts';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    GoogleChartsModule
+    GoogleChartsModule,
+    AngularResizedEventModule
   ],
   providers: [],
   bootstrap: [AppComponent]

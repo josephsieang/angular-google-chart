@@ -9,7 +9,7 @@
     </div>
   </div>
   
-  <div class="container container-chart" id="container-chart" (window:resize) = "onWindowResize($event)">
+  <div class="container container-chart" id="container-chart" (resized)="onResized($event)">
     <google-chart
       #colChart
       [title]="chart.title"

@@ -1,12 +1,13 @@
-import { Component, HostListener, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, HostListener, ViewChild } from '@angular/core';
 import { GoogleChartComponent } from 'angular-google-charts';
+import { ResizedEvent } from 'angular-resize-event';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   @ViewChild('colChart') gChart: GoogleChartComponent;
   title = 'fe-google-chart';
   selectedProject = ['Gyro', 'Palau']
@@ -50,11 +51,13 @@ export class AppComponent {
     })
   }
 
-  @HostListener('window:resize', ['$event'])
-  onWindowResize(event: any){
-    const width = document.getElementById('container-chart').clientWidth;
-    this.gChart.wrapperReady$.subscribe((c) => {
-      c.setOptions({...this.chart.options, width: width})
-    })
+  onResized(event: ResizedEvent): void {
+    const oldWidth = event.oldWidth;
+    const newWidth = event.newWidth;
+    if (oldWidth !== newWidth) {
+      this.gChart.wrapperReady$.subscribe((c) => {
+        c.setOptions({...this.chart.options, width: newWidth})
+      })
+    }
   }
 }
