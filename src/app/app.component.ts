@@ -10,16 +10,16 @@ import { ResizedEvent } from 'angular-resize-event';
 export class AppComponent implements AfterViewInit {
   @ViewChild('colChart') gChart: GoogleChartComponent;
   title = 'fe-google-chart';
-  selectedProject = ['Gyro', 'Palau']
+  selectedProject = ['Gyro', 'Palau', 'Mix Model', 'QTEst']
   chart = {
     title: '',
     type: 'ColumnChart',
     data: [
-      ['2020/4/6', 8136000, 19500000],
-      ['2020/4/7', 8538000, 3470000],
-      ['2020/4/8', 2244000, 2244000],
-      ['2020/4/9', 3470000, 8538000],
-      ['2020/4/10', 19500000, 8136000]
+      ['2020/4/6', 8136000, 19500000, 81360, 81360],
+      ['2020/4/7', 8538000, 3470000, 81360, 81360],
+      ['2020/4/8', 2244000, 2244000, 81360, 81360],
+      ['2020/4/9', 3470000, 8538000, 81360, 81360],
+      ['2020/4/10', 19500000, 8136000, 81360, 81360]
 
     ],
     columnNames: ['Date', ...this.selectedProject],
@@ -37,9 +37,13 @@ export class AppComponent implements AfterViewInit {
         // https://stackoverflow.com/questions/28327342/position-of-vertical-axis-title-in-google-charts to solve: google chart vAxis title being cut off and needs to move closer to axis
         title: '\n\n\nCurrent production',
         // gridlines: { count: 3 }, 
-        // minValue: 500
+        // minValue: 50
+        viewWindow: {
+          min: 81360,
+          max: 19500000
+        }
       },
-      colors: ['#00EAD0', '#814EFA'],
+      colors: ['#55D6BE', '#ACFCD9', '#7D5BA6', '#FC6471'],
       // legend: { position: 'top', maxLines: 3 },
     }
   }
