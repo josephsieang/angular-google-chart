@@ -22,8 +22,8 @@ export class AppComponent {
     dynamicResize: true,
     options: {
       width: 600,
-      height: 300,
-      chartArea: {left: 200, bottom: 130, top: 30, width:'100%',height:'100%'},
+      height: 400,
+      chartArea: {left: 200, bottom: 130, top: 50, width:'100%'},
       hAxis: {
         title: 'Date',
         slantedText: true,
@@ -35,7 +35,8 @@ export class AppComponent {
         // gridlines: { count: 3 }, 
         // minValue: 500
       },
-      colors: ['#00EAD0', '#814EFA']
+      colors: ['#00EAD0', '#814EFA'],
+      legend: { position: 'top', maxLines: 3 },
     }
   }
 }
