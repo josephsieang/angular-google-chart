@@ -2,7 +2,7 @@
   <div class="production-report-header">
     <div class="title">Production Report</div>
     <div class="legends">
-      <div class="legend" *ngFor="let color of chart.options.colors; let i = index">
+      <div class="legend" *ngFor="let color of colChart.options.colors; let i = index">
         <div class="indicator" [ngStyle]="{'background-color': color}"></div>
         <span class="label">{{ selectedProject[i] }}</span>
       </div>
@@ -11,13 +11,13 @@
   
   <div class="container container-chart" id="container-chart" (resized)="onResized($event)">
     <google-chart
-      #colChart
-      [title]="chart.title"
-      [type]="chart.type"
-      [data]="chart.data"
-      [columns]="chart.columnNames"
-      [options]="chart.options"
-      [dynamicResize]="chart.dynamicResize"
+      #gColChart
+      [title]="colChart.title"
+      [type]="colChart.type"
+      [data]="colChart.data"
+      [columns]="colChart.columnNames"
+      [options]="colChart.options"
+      [dynamicResize]="colChart.dynamicResize"
     >
     </google-chart>
   </div>

@@ -8,10 +8,10 @@ import { ResizedEvent } from 'angular-resize-event';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements AfterViewInit {
-  @ViewChild('colChart') gChart: GoogleChartComponent;
+  @ViewChild('gColChart') gColChart: GoogleChartComponent;
   title = 'fe-google-chart';
   selectedProject = ['Gyro', 'Palau', 'Mix Model', 'QTEst']
-  chart = {
+  colChart = {
     title: '',
     type: 'ColumnChart',
     data: [
@@ -50,8 +50,8 @@ export class AppComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     const width = document.getElementById('container-chart').clientWidth;
-    this.gChart.wrapperReady$.subscribe((c) => {
-      c.setOptions({...this.chart.options, width: width})
+    this.gColChart.wrapperReady$.subscribe((c) => {
+      c.setOptions({...this.colChart.options, width: width})
     })
   }
 
@@ -59,8 +59,8 @@ export class AppComponent implements AfterViewInit {
     const oldWidth = event.oldWidth;
     const newWidth = event.newWidth;
     if (oldWidth !== newWidth) {
-      this.gChart.wrapperReady$.subscribe((c) => {
-        c.setOptions({...this.chart.options, width: newWidth})
+      this.gColChart.wrapperReady$.subscribe((c) => {
+        c.setOptions({...this.colChart.options, width: newWidth})
       })
     }
   }
