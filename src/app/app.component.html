@@ -22,3 +22,22 @@
     </google-chart>
   </div>
 </div>
+
+<div class="container container-other-kpi">
+  <div class="other-kpi-header">
+    <div class="title">Other KPIs</div>
+  </div>
+  
+  <div class="container container-line-chart" id="container-line-chart" (resized)="onResized($event)">
+    <google-chart
+      #gLineChart
+      [title]="lineChart.title"
+      [type]="lineChart.type"
+      [data]="lineChart.data"
+      [columns]="lineChart.columnNames"
+      [options]="lineChart.options"
+      [dynamicResize]="lineChart.dynamicResize"
+    >
+    </google-chart>
+  </div>
+</div>

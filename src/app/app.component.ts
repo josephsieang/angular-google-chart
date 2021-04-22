@@ -9,6 +9,7 @@ import { ResizedEvent } from 'angular-resize-event';
 })
 export class AppComponent implements AfterViewInit {
   @ViewChild('gColChart') gColChart: GoogleChartComponent;
+  @ViewChild('gLineChart') gLineChart: GoogleChartComponent;
   title = 'fe-google-chart';
   selectedProject = ['Gyro', 'Palau', 'Mix Model', 'QTEst']
   colChart = {
@@ -45,6 +46,54 @@ export class AppComponent implements AfterViewInit {
       },
       colors: ['#00EAD0', '#814EFA', '#CB75EB', '#D4675F'], //F6BC6F
       // legend: { position: 'top', maxLines: 3 },
+      animation:{
+        startup: true,
+        duration: 1000,
+        easing: 'out',
+      },
+    }
+  }
+
+  lineChart = {
+    title: '',
+    type: 'LineChart',
+    data: [
+      ['2020/4/6', 0.05, 0.7, 0.98, 0.95],
+      ['2020/4/7', 0.9, 0.7, 0.98, 0.95],
+      ['2020/4/8', 0.85, 0.7, 0.98, 0.95],
+      ['2020/4/9', 0.8, 0.75, 1.0, 0.95],
+      ['2020/4/10', 0.77, 0.8, 1.0, 0.95]
+    ],
+    columnNames: ['Date', ...this.selectedProject],
+    dynamicResize: true,
+    options: {
+      width: 600,
+      height: 400,
+      chartArea: {left: 150, bottom: 130, top: 50, width:'100%'},
+      hAxis: {
+        title: 'Date',
+        slantedText: true,
+        slantedTextAngle: 90
+      },
+      vAxis: {
+        // https://stackoverflow.com/questions/28327342/position-of-vertical-axis-title-in-google-charts to solve: google chart vAxis title being cut off and needs to move closer to axis
+        title: '\n\n\nOEE',
+        // gridlines: { count: 3 }, 
+        // minValue: 50
+        viewWindow: {
+          min: 0,
+          max: 1.0
+        }
+      },
+      colors: ['#00EAD0', '#814EFA', '#CB75EB', '#D4675F'], //F6BC6F
+      // legend: { position: 'top', maxLines: 3 },
+      pointSize: 5,
+      curveType: 'function',
+      animation:{
+        // startup: true,
+        duration: 1000,
+        easing: 'out',
+      },
     }
   }
 
@@ -53,6 +102,22 @@ export class AppComponent implements AfterViewInit {
     this.gColChart.wrapperReady$.subscribe((c) => {
       c.setOptions({...this.colChart.options, width: width})
     })
+
+    const lineChartContainerWidth = document.getElementById('container-line-chart').clientWidth;
+    this.gLineChart.wrapperReady$.subscribe((c) => {
+      c.setOptions({...this.lineChart.options, width: lineChartContainerWidth})
+    })
+
+    // Just for animation testing => when switching chart between OEE, MA, ME, MQ, just call API and put in the data, Google chart animation will do the animation for us
+    setTimeout(() => {
+      this.lineChart.data = [
+        ['2020/4/6', 0.7, 0.98, 0.95, 0.05],
+        ['2020/4/7', 0.7, 0.98, 0.95, 0.9],
+        ['2020/4/8', 0.7, 0.98, 0.95, 0.85],
+        ['2020/4/9', 0.75, 1.0, 0.95, 0.8],
+        ['2020/4/10', 0.8, 1.0, 0.95, 0.77]
+      ]
+    }, 3000)
   }
 
   onResized(event: ResizedEvent): void {
