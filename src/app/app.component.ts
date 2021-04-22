@@ -7,6 +7,7 @@ import { GoogleChartComponent } from 'angular-google-charts';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  @ViewChild('colChart') gChart: GoogleChartComponent;
   title = 'fe-google-chart';
   selectedProject = ['Gyro', 'Palau']
   chart = {
@@ -40,5 +41,13 @@ export class AppComponent {
       colors: ['#00EAD0', '#814EFA'],
       // legend: { position: 'top', maxLines: 3 },
     }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onWindowResize(event: any){
+    const width = document.getElementById('container-chart').clientWidth;
+    this.gChart.wrapperReady$.subscribe((c) => {
+      c.setOptions({...this.chart.options, width: width})
+    })
   }
 }

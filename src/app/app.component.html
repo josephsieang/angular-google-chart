@@ -9,13 +9,16 @@
     </div>
   </div>
   
-  <google-chart
-    [title]="chart.title"
-    [type]="chart.type"
-    [data]="chart.data"
-    [columns]="chart.columnNames"
-    [options]="chart.options"
-    [dynamicResize]="chart.dynamicResize"
-  >
-  </google-chart>
+  <div class="container container-chart" id="container-chart" (window:resize) = "onWindowResize($event)">
+    <google-chart
+      #colChart
+      [title]="chart.title"
+      [type]="chart.type"
+      [data]="chart.data"
+      [columns]="chart.columnNames"
+      [options]="chart.options"
+      [dynamicResize]="chart.dynamicResize"
+    >
+    </google-chart>
+  </div>
 </div>
