@@ -18,7 +18,7 @@ export class AppComponent {
       ['2020/4/7', 8538000, 3470000],
       ['2020/4/8', 2244000, 2244000],
       ['2020/4/9', 3470000, 8538000],
-      ['2020/4/10', 19500000, 8136000],
+      ['2020/4/10', 19500000, 8136000]
 
     ],
     columnNames: ['Date', ...this.selectedProject],
@@ -41,6 +41,13 @@ export class AppComponent {
       colors: ['#00EAD0', '#814EFA'],
       // legend: { position: 'top', maxLines: 3 },
     }
+  }
+
+  ngAfterViewInit(): void {
+    const width = document.getElementById('container-chart').clientWidth;
+    this.gChart.wrapperReady$.subscribe((c) => {
+      c.setOptions({...this.chart.options, width: width})
+    })
   }
 
   @HostListener('window:resize', ['$event'])
