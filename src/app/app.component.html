@@ -1,9 +1,21 @@
-<google-chart
-  [title]="chart.title"
-  [type]="chart.type"
-  [data]="chart.data"
-  [columns]="chart.columnNames"
-  [options]="chart.options"
-  [dynamicResize]="chart.dynamicResize"
->
-</google-chart>
+<div class="container container-production-report">
+  <div class="production-report-header">
+    <div class="title">Production Report</div>
+    <div class="legends">
+      <div class="legend" *ngFor="let color of chart.options.colors; let i = index">
+        <div class="indicator" [ngStyle]="{'background-color': color}"></div>
+        <span class="label">{{ selectedProject[i] }}</span>
+      </div>
+    </div>
+  </div>
+  
+  <google-chart
+    [title]="chart.title"
+    [type]="chart.type"
+    [data]="chart.data"
+    [columns]="chart.columnNames"
+    [options]="chart.options"
+    [dynamicResize]="chart.dynamicResize"
+  >
+  </google-chart>
+</div>

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, HostListener, ViewChild } from '@angular/core';
+import { GoogleChartComponent } from 'angular-google-charts';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'fe-google-chart';
+  selectedProject = ['Gyro', 'Palau']
   chart = {
     title: '',
     type: 'ColumnChart',
@@ -18,7 +20,7 @@ export class AppComponent {
       ['2020/4/10', 19500000, 8136000],
 
     ],
-    columnNames: ['Date', 'Gyro', 'Palau'],
+    columnNames: ['Date', ...this.selectedProject],
     dynamicResize: true,
     options: {
       width: 600,
@@ -36,7 +38,7 @@ export class AppComponent {
         // minValue: 500
       },
       colors: ['#00EAD0', '#814EFA'],
-      legend: { position: 'top', maxLines: 3 },
+      // legend: { position: 'top', maxLines: 3 },
     }
   }
 }

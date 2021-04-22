@@ -1,0 +1,27 @@
+.container-production-report {
+  width: 50%;
+
+  .production-report-header {
+    display: flex;
+    justify-content: space-between;
+  
+    .legends {
+      display: flex;
+    
+      .legend {
+        margin-left: 20px;
+        display: flex;
+        align-items: center;
+    
+        .indicator {
+          height: 10px;
+          width: 20px;
+          background-color: aquamarine;
+          margin-right: 10px;
+          align-self: center;
+        }
+      }
+    }
+  }
+}
+
