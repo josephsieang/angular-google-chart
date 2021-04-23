@@ -97,8 +97,13 @@ export class AppComponent implements AfterViewInit {
     }
   }
 
+  showChart = false;
+  showGaugeMeter = true;
+  percentage = 100;
+
   ngAfterViewInit(): void {
-    const width = document.getElementById('container-chart').clientWidth;
+    if(this.showChart) {
+      const width = document.getElementById('container-chart').clientWidth;
     this.gColChart.wrapperReady$.subscribe((c) => {
       c.setOptions({...this.colChart.options, width: width})
     })
@@ -118,6 +123,7 @@ export class AppComponent implements AfterViewInit {
         ['2020/4/10', 0.8, 1.0, 0.95, 0.77]
       ]
     }, 3000)
+    }
   }
 
   onResized(event: ResizedEvent): void {
@@ -138,5 +144,22 @@ export class AppComponent implements AfterViewInit {
         c.setOptions({...this.lineChart.options, width: newWidth})
       })
     }
+  }
+
+  updateProgress(): void {
+    const gaugeContainer = document.querySelector('#gauge-percentage');
+    gaugeContainer.classList.remove('gauge-percentage-animation');
+    
+    const realtimeProgress = document.querySelector('#realtime-progress');
+    realtimeProgress.classList.remove('realtime-progress');
+
+    setTimeout(() => {
+      this.percentage = Math.round(Math.random() * 100);
+      gaugeContainer.classList.add('gauge-percentage-animation');
+
+      const numerator = this.percentage * 1413.75 / 100;
+      realtimeProgress.attributes.getNamedItem('stroke-dasharray').value = `${numerator}, 1413.75`;
+      realtimeProgress.classList.add('realtime-progress');
+    }, 100)
   }
 }

@@ -1,49 +1,64 @@
-<div class="container container-production-report">
-  <div class="production-report-header">
-    <div class="title">Production Report</div>
-    <div class="legends">
-      <div class="legend" *ngFor="let color of colChart.options.colors; let i = index">
-        <div class="indicator" [ngStyle]="{'background-color': color}"></div>
-        <span class="label">{{ selectedProject[i] }}</span>
+<div *ngIf="showChart">
+  <div class="container container-production-report">
+    <div class="production-report-header">
+      <div class="title">Production Report</div>
+      <div class="legends">
+        <div class="legend" *ngFor="let color of colChart.options.colors; let i = index">
+          <div class="indicator" [ngStyle]="{'background-color': color}"></div>
+          <span class="label">{{ selectedProject[i] }}</span>
+        </div>
       </div>
+    </div>
+    
+    <div class="container container-chart" id="container-chart" (resized)="onResized($event)">
+      <google-chart
+        #gColChart
+        [title]="colChart.title"
+        [type]="colChart.type"
+        [data]="colChart.data"
+        [columns]="colChart.columnNames"
+        [options]="colChart.options"
+        [dynamicResize]="colChart.dynamicResize"
+      >
+      </google-chart>
     </div>
   </div>
   
-  <div class="container container-chart" id="container-chart" (resized)="onResized($event)">
-    <google-chart
-      #gColChart
-      [title]="colChart.title"
-      [type]="colChart.type"
-      [data]="colChart.data"
-      [columns]="colChart.columnNames"
-      [options]="colChart.options"
-      [dynamicResize]="colChart.dynamicResize"
-    >
-    </google-chart>
+  <div class="container container-other-kpi">
+    <div class="other-kpi-header">
+      <div class="title">Other KPIs</div>
+      <div class="legends">
+        <div class="legend" *ngFor="let color of colChart.options.colors; let i = index">
+          <div class="indicator" [ngStyle]="{'background-color': color}"></div>
+          <span class="label">{{ selectedProject[i] }}</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container container-line-chart" id="container-line-chart" (resized)="onLineChartResized($event)">
+      <google-chart
+        #gLineChart
+        [title]="lineChart.title"
+        [type]="lineChart.type"
+        [data]="lineChart.data"
+        [columns]="lineChart.columnNames"
+        [options]="lineChart.options"
+        [dynamicResize]="lineChart.dynamicResize"
+      >
+      </google-chart>
+    </div>
   </div>
 </div>
 
-<div class="container container-other-kpi">
-  <div class="other-kpi-header">
-    <div class="title">Other KPIs</div>
-    <div class="legends">
-      <div class="legend" *ngFor="let color of colChart.options.colors; let i = index">
-        <div class="indicator" [ngStyle]="{'background-color': color}"></div>
-        <span class="label">{{ selectedProject[i] }}</span>
-      </div>
-    </div>
+<div *ngIf="showGaugeMeter">
+  <div class="container-gauge">
+    <svg viewBox="0 0 1000 530">
+      <path stroke="#BCA4FF" stroke-linecap="round" d="M 50 500 A 450 450 0 0 1 950 500"></path>
+        <path class="realtime-progress" id="realtime-progress" stroke="#814EFA" stroke-linecap="round" d="M 50 500 A 450 450 0 0 1 950 500" stroke-dasharray="800, 1413.75"></path>
+        <!-- stroke-dasharray second var is circumstances of half circle which is 2pi * radius(450), first var must > 0  -->
+        <!-- <text class='percentage' text-anchor="middle" alignment-baseline="middle" x="525" y="350" font-size="140" font-weight="bold">56.61%</text> -->
+    </svg>
+    <div class="gauge-percentage gauge-percentage-animation" id="gauge-percentage">{{ (percentage | number : '1.2-2') + "%" }}</div>
   </div>
-  
-  <div class="container container-line-chart" id="container-line-chart" (resized)="onLineChartResized($event)">
-    <google-chart
-      #gLineChart
-      [title]="lineChart.title"
-      [type]="lineChart.type"
-      [data]="lineChart.data"
-      [columns]="lineChart.columnNames"
-      [options]="lineChart.options"
-      [dynamicResize]="lineChart.dynamicResize"
-    >
-    </google-chart>
-  </div>
+  <button class="btn btn-primary" (click)="updateProgress()">Update progress</button>
 </div>
