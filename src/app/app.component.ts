@@ -239,6 +239,7 @@ export class AppComponent implements AfterViewInit {
         realtimeProgress.attributes.getNamedItem(
           'stroke-dasharray'
         ).value = `${numerator}, 1413.75`;
+        realtimeProgress.attributes.getNamedItem('stroke').value = '#814EFA';
         document.querySelector<HTMLElement>("#odometer").style.setProperty("--percent", String(roundedPercentage / 100));
       }, 200)
     }
