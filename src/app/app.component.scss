@@ -108,23 +108,23 @@
   }
   
   .realtime-progress {
-    animation: progress 0.4s ease-out;
-  }
-
-  .realtime-progress-40-par {
     animation: progress 0.8s ease-out;
   }
 
-  .realtime-progress-60-par {
+  .realtime-progress-40-par {
     animation: progress 1.2s ease-out;
   }
 
-  .realtime-progress-80-par {
+  .realtime-progress-60-par {
     animation: progress 1.6s ease-out;
   }
 
-  .realtime-progress-100-par {
+  .realtime-progress-80-par {
     animation: progress 2s ease-out;
+  }
+
+  .realtime-progress-100-par {
+    animation: progress 2.4s ease-out;
   }
 
   .gauge-percentage {
@@ -165,17 +165,6 @@
 }
 
 .odometer {
-  transition: --percent 0.4s;
-  --temp: calc(var(--percent) * 100);
-  --v1: max(var(--temp) - 0.5, 0);
-  --v2: max((var(--temp) - var(--v1)) * 100 - 0.5, 0);
-  counter-reset: v1 var(--v1) v2 var(--v2);
-
-  &::before {
-    content: counter(v1) "." counter(v2, decimal-leading-zero) "%";
-  }
-}
-.odometer-40-par {
   transition: --percent 0.8s;
   --temp: calc(var(--percent) * 100);
   --v1: max(var(--temp) - 0.5, 0);
@@ -186,7 +175,7 @@
     content: counter(v1) "." counter(v2, decimal-leading-zero) "%";
   }
 }
-.odometer-60-par {
+.odometer-40-par {
   transition: --percent 1.2s;
   --temp: calc(var(--percent) * 100);
   --v1: max(var(--temp) - 0.5, 0);
@@ -197,7 +186,7 @@
     content: counter(v1) "." counter(v2, decimal-leading-zero) "%";
   }
 }
-.odometer-80-par {
+.odometer-60-par {
   transition: --percent 1.6s;
   --temp: calc(var(--percent) * 100);
   --v1: max(var(--temp) - 0.5, 0);
@@ -208,8 +197,19 @@
     content: counter(v1) "." counter(v2, decimal-leading-zero) "%";
   }
 }
-.odometer-100-par {
+.odometer-80-par {
   transition: --percent 2s;
+  --temp: calc(var(--percent) * 100);
+  --v1: max(var(--temp) - 0.5, 0);
+  --v2: max((var(--temp) - var(--v1)) * 100 - 0.5, 0);
+  counter-reset: v1 var(--v1) v2 var(--v2);
+
+  &::before {
+    content: counter(v1) "." counter(v2, decimal-leading-zero) "%";
+  }
+}
+.odometer-100-par {
+  transition: --percent 2.4s;
   --temp: calc(var(--percent) * 100);
   --v1: max(var(--temp) - 0.5, 0);
   --v2: max((var(--temp) - var(--v1)) * 100 - 0.5, 0);
