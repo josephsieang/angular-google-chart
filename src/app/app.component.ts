@@ -100,6 +100,7 @@ export class AppComponent implements AfterViewInit {
   showChart = false;
   showGaugeMeter = true;
   percentage = 100;
+  lastPercentageAnimationClass = 'realtime-progress-100-par';
 
   ngAfterViewInit(): void {
     if(this.showChart) {
@@ -151,7 +152,7 @@ export class AppComponent implements AfterViewInit {
     gaugeContainer.classList.remove('gauge-percentage-animation');
     
     const realtimeProgress = document.querySelector('#realtime-progress');
-    realtimeProgress.classList.remove('realtime-progress');
+    realtimeProgress.classList.remove(this.lastPercentageAnimationClass);
 
     setTimeout(() => {
       this.percentage = Math.round(Math.random() * 100);
@@ -159,7 +160,22 @@ export class AppComponent implements AfterViewInit {
 
       const numerator = this.percentage * 1413.75 / 100;
       realtimeProgress.attributes.getNamedItem('stroke-dasharray').value = `${numerator}, 1413.75`;
-      realtimeProgress.classList.add('realtime-progress');
+      if(numerator < 20) {
+        realtimeProgress.classList.add('realtime-progress');
+        this.lastPercentageAnimationClass = 'realtime-progress';
+      } else if(numerator < 40) {
+        realtimeProgress.classList.add('realtime-progress-40-par');
+        this.lastPercentageAnimationClass = 'realtime-progress-40-par';
+      } else if(numerator < 60) {
+        realtimeProgress.classList.add('realtime-progress-60-par');
+        this.lastPercentageAnimationClass = 'realtime-progress-60-par';
+      } else if (numerator > 80) {
+        realtimeProgress.classList.add('realtime-progress-80-par');
+        this.lastPercentageAnimationClass = 'realtime-progress-80-par';
+      } else {
+        realtimeProgress.classList.add('realtime-progress-100-par');
+        this.lastPercentageAnimationClass = 'realtime-progress-100-par';
+      }
     }, 100)
   }
 }
