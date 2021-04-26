@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GoogleChartsModule } from 'angular-google-charts';
 import { AngularResizedEventModule } from 'angular-resize-event';
+import { Ng9OdometerModule } from 'ng9-odometer'; 
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { AngularResizedEventModule } from 'angular-resize-event';
     BrowserModule,
     AppRoutingModule,
     GoogleChartsModule,
-    AngularResizedEventModule
+    AngularResizedEventModule,
+    Ng9OdometerModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
