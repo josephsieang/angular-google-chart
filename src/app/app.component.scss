@@ -136,6 +136,11 @@
     text-align: center;
     top: 50%;
     font-size: 3rem;
+
+    .dot {
+      vertical-align: bottom;
+      line-height: initial;
+    }
   }
 
   .gauge-percentage-animation {
