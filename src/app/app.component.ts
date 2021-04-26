@@ -106,7 +106,7 @@ export class AppComponent implements AfterViewInit {
   showGaugeMeterWithOdometer = false;
   showGaugeMeterWithOdometerNpmPackage = true;
 
-  percentage = 100;
+  percentage = 0;
   lastPercentageAnimationClass = 'realtime-progress-100-par';
   lastOdometerAnimationClass = '_odometer-par';
   decimal = 0;
@@ -248,7 +248,13 @@ export class AppComponent implements AfterViewInit {
         document.querySelector<HTMLElement>("#_odometer").style.setProperty("--percent", String(roundedPercentage / 100));
       }, 200)
     } else if (this.showGaugeMeterWithOdometerNpmPackage) {
-      this.percentage = Math.random() * 100;
+      let numerator = (this.percentage * 1413.75) / 100;
+      document.querySelector<HTMLElement>("#realtime-progress").style.setProperty("--lastNumerator", String(numerator));
+      document.querySelector<HTMLElement>("#realtime-progress").attributes.getNamedItem(
+        'stroke-dasharray'
+      ).value = `${numerator}, 1413.75`;
+
+      this.percentage += 5;
       // const roundedPercentage = Math.round(this.percentage * 100) / 100;
       this.wholeNumber = Math.round(this.percentage);
       // console.log(this.percentage, roundedPercentage);
@@ -260,34 +266,38 @@ export class AppComponent implements AfterViewInit {
       // this.decimal = Math.abs(this.wholeNumber - roundedPercentage) * 100;
       
       console.log(this.percentage)
-      const numerator = (this.percentage * 1413.75) / 100;
+      numerator = (this.percentage * 1413.75) / 100;
 
       const realtimeProgress = document.querySelector('#realtime-progress');
       realtimeProgress.classList.remove(this.lastPercentageAnimationClass);
 
       setTimeout(() => {
-        if (this.percentage < 20) {
+        // if (this.percentage < 20) {
           realtimeProgress.classList.add('realtime-progress');
           this.lastPercentageAnimationClass = 'realtime-progress';
-        } else if (this.percentage < 40) {
-          realtimeProgress.classList.add('realtime-progress-40-par');
-          this.lastPercentageAnimationClass = 'realtime-progress-40-par';
-        } else if (this.percentage < 60) {
-          realtimeProgress.classList.add('realtime-progress-60-par');
-          this.lastPercentageAnimationClass = 'realtime-progress-60-par';
-        } else if (this.percentage < 80) {
-          realtimeProgress.classList.add('realtime-progress-80-par');
-          this.lastPercentageAnimationClass = 'realtime-progress-80-par';
-        } else {
-          realtimeProgress.classList.add('realtime-progress-100-par');
-          this.lastPercentageAnimationClass = 'realtime-progress-100-par';
-        }
+        // } else if (this.percentage < 40) {
+        //   realtimeProgress.classList.add('realtime-progress-40-par');
+        //   this.lastPercentageAnimationClass = 'realtime-progress-40-par';
+        // } else if (this.percentage < 60) {
+        //   realtimeProgress.classList.add('realtime-progress-60-par');
+        //   this.lastPercentageAnimationClass = 'realtime-progress-60-par';
+        // } else if (this.percentage < 80) {
+        //   realtimeProgress.classList.add('realtime-progress-80-par');
+        //   this.lastPercentageAnimationClass = 'realtime-progress-80-par';
+        // } else {
+        //   realtimeProgress.classList.add('realtime-progress-100-par');
+        //   this.lastPercentageAnimationClass = 'realtime-progress-100-par';
+        // }
 
-        realtimeProgress.attributes.getNamedItem(
-          'stroke-dasharray'
-        ).value = `${numerator}, 1413.75`;
+        
+        document.querySelector<HTMLElement>("#realtime-progress").style.setProperty("--curNumerator", String(numerator));
         realtimeProgress.attributes.getNamedItem('stroke').value = '#814EFA';
+        console.log('lastNumerator: ', document.querySelector<HTMLElement>("#realtime-progress").style.getPropertyValue('--lastNumerator'), ' curNumerator: ', document.querySelector<HTMLElement>("#realtime-progress").style.getPropertyValue('--curNumerator'));
       }, 200)
+
+      setTimeout(() => {
+        this.updateProgress()
+      }, 3000)
     }
   }
 }

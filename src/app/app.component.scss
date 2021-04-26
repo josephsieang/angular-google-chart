@@ -108,23 +108,24 @@
   }
   
   .realtime-progress {
-    animation: progress 0.8s ease-out;
+    stroke-dasharray: var(--lastNumerator) 1413.75;
+    animation: progress 0.8s ease-out forwards;
   }
 
   .realtime-progress-40-par {
-    animation: progress 1.2s ease-out;
+    animation: progress 1.2s ease-out forwards;
   }
 
   .realtime-progress-60-par {
-    animation: progress 1.6s ease-out;
+    animation: progress 1.6s ease-out forwards;
   }
 
   .realtime-progress-80-par {
-    animation: progress 2s ease-out;
+    animation: progress 2s ease-out forwards;
   }
 
   .realtime-progress-100-par {
-    animation: progress 2.4s ease-out;
+    animation: progress 2.4s ease-out forwards;
   }
 
   .gauge-percentage {
@@ -153,8 +154,11 @@
   }
   
   @keyframes progress {
-    0% {
-      stroke-dasharray: 0 1413.75; 
+    from {
+      stroke-dasharray: var(--lastNumerator) 1413.75; 
+    }
+    to {
+      stroke-dasharray: var(--curNumerator) 1413.75; 
     }
   }
 
