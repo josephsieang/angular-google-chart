@@ -103,8 +103,8 @@ export class AppComponent implements AfterViewInit {
 
   showChart = false;
   showGaugeMeter = false;
-  showGaugeMeterWithOdometer = false;
-  showGaugeMeterWithOdometerNpmPackage = true;
+  showGaugeMeterWithOdometer = true;
+  showGaugeMeterWithOdometerNpmPackage = false;
 
   percentage = 0;
   lastPercentageAnimationClass = 'realtime-progress-100-par';
@@ -198,55 +198,66 @@ export class AppComponent implements AfterViewInit {
         }
       }, 100);
     } else if (this.showGaugeMeterWithOdometer) {
+      let numerator = (this.percentage * 1413.75) / 100;
+      document.querySelector<HTMLElement>("#realtime-progress").style.setProperty("--lastNumerator", String(numerator));
+      document.querySelector<HTMLElement>("#realtime-progress").attributes.getNamedItem(
+        'stroke-dasharray'
+      ).value = `${numerator}, 1413.75`;
+
       const realtimeProgress = document.querySelector('#realtime-progress');
       realtimeProgress.classList.remove(this.lastPercentageAnimationClass);
 
       const odometer = document.querySelector('#_odometer');
-      odometer.classList.remove(this.lastOdometerAnimationClass);
+      // odometer.classList.remove(this.lastOdometerAnimationClass);
       
-      this.percentage = Math.random() * 100;
+      this.percentage += 5;
       const roundedPercentage = Math.round(this.percentage * 100) / 100;
-      const numerator = (this.percentage * 1413.75) / 100;
+      numerator = (this.percentage * 1413.75) / 100;
       console.log(this.percentage, ' ', roundedPercentage);
       setTimeout(() => {
         if (this.percentage < 20) {
           realtimeProgress.classList.add('realtime-progress');
           this.lastPercentageAnimationClass = 'realtime-progress';
 
-          odometer.classList.add('_odometer');
-          this.lastOdometerAnimationClass = '_odometer';
+          // odometer.classList.add('_odometer');
+          // this.lastOdometerAnimationClass = '_odometer';
         } else if (this.percentage < 40) {
           realtimeProgress.classList.add('realtime-progress-40-par');
           this.lastPercentageAnimationClass = 'realtime-progress-40-par';
 
-          odometer.classList.add('_odometer-40-par');
-          this.lastOdometerAnimationClass = '_odometer-40-par';
+          // odometer.classList.add('_odometer-40-par');
+          // this.lastOdometerAnimationClass = '_odometer-40-par';
         } else if (this.percentage < 60) {
           realtimeProgress.classList.add('realtime-progress-60-par');
           this.lastPercentageAnimationClass = 'realtime-progress-60-par';
 
-          odometer.classList.add('_odometer-60-par');
-          this.lastOdometerAnimationClass = '_odometer-60-par';
+          // odometer.classList.add('_odometer-60-par');
+          // this.lastOdometerAnimationClass = '_odometer-60-par';
         } else if (this.percentage < 80) {
           realtimeProgress.classList.add('realtime-progress-80-par');
           this.lastPercentageAnimationClass = 'realtime-progress-80-par';
 
-          odometer.classList.add('_odometer-80-par');
-          this.lastOdometerAnimationClass = '_odometer-80-par';
+          // odometer.classList.add('_odometer-80-par');
+          // this.lastOdometerAnimationClass = '_odometer-80-par';
         } else {
           realtimeProgress.classList.add('realtime-progress-100-par');
           this.lastPercentageAnimationClass = 'realtime-progress-100-par';
 
-          odometer.classList.add('_odometer-100-par');
-          this.lastOdometerAnimationClass = '_odometer-100-par';
+          // odometer.classList.add('_odometer-100-par');
+          // this.lastOdometerAnimationClass = '_odometer-100-par';
         }
       
-        realtimeProgress.attributes.getNamedItem(
-          'stroke-dasharray'
-        ).value = `${numerator}, 1413.75`;
+        // realtimeProgress.attributes.getNamedItem(
+        //   'stroke-dasharray'
+        // ).value = `${numerator}, 1413.75`;
+        document.querySelector<HTMLElement>("#realtime-progress").style.setProperty("--curNumerator", String(numerator));
         realtimeProgress.attributes.getNamedItem('stroke').value = '#814EFA';
         document.querySelector<HTMLElement>("#_odometer").style.setProperty("--percent", String(roundedPercentage / 100));
       }, 200)
+
+      setTimeout(() => {
+        this.updateProgress()
+      }, 3000);
     } else if (this.showGaugeMeterWithOdometerNpmPackage) {
       let numerator = (this.percentage * 1413.75) / 100;
       document.querySelector<HTMLElement>("#realtime-progress").style.setProperty("--lastNumerator", String(numerator));

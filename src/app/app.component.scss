@@ -113,18 +113,22 @@
   }
 
   .realtime-progress-40-par {
+    stroke-dasharray: var(--lastNumerator) 1413.75;
     animation: progress 1.2s ease-out forwards;
   }
 
   .realtime-progress-60-par {
+    stroke-dasharray: var(--lastNumerator) 1413.75;
     animation: progress 1.6s ease-out forwards;
   }
 
   .realtime-progress-80-par {
+    stroke-dasharray: var(--lastNumerator) 1413.75;
     animation: progress 2s ease-out forwards;
   }
 
   .realtime-progress-100-par {
+    stroke-dasharray: var(--lastNumerator) 1413.75;
     animation: progress 2.4s ease-out forwards;
   }
 
@@ -186,7 +190,8 @@
   counter-reset: v1 var(--v1) v2 var(--v2);
 
   &::before {
-    content: counter(v1) "." counter(v2, decimal-leading-zero) "%";
+    // content: counter(v1) "." counter(v2, decimal-leading-zero) "%";
+    content: counter(v1);
   }
 }
 ._odometer-40-par {
@@ -197,7 +202,7 @@
   counter-reset: v1 var(--v1) v2 var(--v2);
 
   &::before {
-    content: counter(v1) "." counter(v2, decimal-leading-zero) "%";
+    content: counter(v1);
   }
 }
 ._odometer-60-par {
@@ -208,7 +213,7 @@
   counter-reset: v1 var(--v1) v2 var(--v2);
 
   &::before {
-    content: counter(v1) "." counter(v2, decimal-leading-zero) "%";
+    content: counter(v1);
   }
 }
 ._odometer-80-par {
@@ -219,7 +224,7 @@
   counter-reset: v1 var(--v1) v2 var(--v2);
 
   &::before {
-    content: counter(v1) "." counter(v2, decimal-leading-zero) "%";
+    content: counter(v1);
   }
 }
 ._odometer-100-par {
@@ -230,6 +235,6 @@
   counter-reset: v1 var(--v1) v2 var(--v2);
 
   &::before {
-    content: counter(v1) "." counter(v2, decimal-leading-zero) "%";
+    content: counter(v1);
   }
 }
