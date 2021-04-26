@@ -110,7 +110,9 @@ export class AppComponent implements AfterViewInit {
   lastPercentageAnimationClass = 'realtime-progress-100-par';
   lastOdometerAnimationClass = '_odometer-par';
   decimal = 0;
-  wholeNumber = 0
+  wholeNumber = 0;
+  decimalStr = '';
+  wholeNumberStr = '';
 
   ngAfterViewInit(): void {
     if (this.showChart) {
@@ -247,9 +249,17 @@ export class AppComponent implements AfterViewInit {
       }, 200)
     } else if (this.showGaugeMeterWithOdometerNpmPackage) {
       this.percentage = Math.random() * 100;
-      this.decimal = Math.abs(Math.round(this.percentage) - this.percentage);
-      this.wholeNumber = this.percentage - this.decimal;
-      this.decimal *= 100;
+      // const roundedPercentage = Math.round(this.percentage * 100) / 100;
+      this.wholeNumber = Math.round(this.percentage);
+      // console.log(this.percentage, roundedPercentage);
+      // if(Math.round(this.decimal) === 0) {
+      //   this.showZeroOdometer = true;
+      // }
+      // need to special handle if first decimal is zero, we need to show another odometer which show zero
+      // but to make it has the odometer effect, we need another odometer
+      // this.decimal = Math.abs(this.wholeNumber - roundedPercentage) * 100;
+      
+      console.log(this.percentage)
       const numerator = (this.percentage * 1413.75) / 100;
 
       const realtimeProgress = document.querySelector('#realtime-progress');
@@ -272,7 +282,6 @@ export class AppComponent implements AfterViewInit {
           realtimeProgress.classList.add('realtime-progress-100-par');
           this.lastPercentageAnimationClass = 'realtime-progress-100-par';
         }
-
 
         realtimeProgress.attributes.getNamedItem(
           'stroke-dasharray'
