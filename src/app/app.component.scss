@@ -191,7 +191,7 @@
 
   &::before {
     // content: counter(v1) "." counter(v2, decimal-leading-zero) "%";
-    content: counter(v1);
+    content: counter(v1)"%";
   }
 }
 ._odometer-40-par {
@@ -202,7 +202,7 @@
   counter-reset: v1 var(--v1) v2 var(--v2);
 
   &::before {
-    content: counter(v1);
+    content: counter(v1)"%";
   }
 }
 ._odometer-60-par {
@@ -213,7 +213,7 @@
   counter-reset: v1 var(--v1) v2 var(--v2);
 
   &::before {
-    content: counter(v1);
+    content: counter(v1)"%";
   }
 }
 ._odometer-80-par {
@@ -224,7 +224,7 @@
   counter-reset: v1 var(--v1) v2 var(--v2);
 
   &::before {
-    content: counter(v1);
+    content: counter(v1)"%";
   }
 }
 ._odometer-100-par {
@@ -235,6 +235,6 @@
   counter-reset: v1 var(--v1) v2 var(--v2);
 
   &::before {
-    content: counter(v1);
+    content: counter(v1)"%";
   }
 }
