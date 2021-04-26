@@ -164,7 +164,7 @@
   }
 }
 
-.odometer {
+._odometer {
   transition: --percent 0.8s;
   --temp: calc(var(--percent) * 100);
   --v1: max(var(--temp) - 0.5, 0);
@@ -175,7 +175,7 @@
     content: counter(v1) "." counter(v2, decimal-leading-zero) "%";
   }
 }
-.odometer-40-par {
+._odometer-40-par {
   transition: --percent 1.2s;
   --temp: calc(var(--percent) * 100);
   --v1: max(var(--temp) - 0.5, 0);
@@ -186,7 +186,7 @@
     content: counter(v1) "." counter(v2, decimal-leading-zero) "%";
   }
 }
-.odometer-60-par {
+._odometer-60-par {
   transition: --percent 1.6s;
   --temp: calc(var(--percent) * 100);
   --v1: max(var(--temp) - 0.5, 0);
@@ -197,7 +197,7 @@
     content: counter(v1) "." counter(v2, decimal-leading-zero) "%";
   }
 }
-.odometer-80-par {
+._odometer-80-par {
   transition: --percent 2s;
   --temp: calc(var(--percent) * 100);
   --v1: max(var(--temp) - 0.5, 0);
@@ -208,7 +208,7 @@
     content: counter(v1) "." counter(v2, decimal-leading-zero) "%";
   }
 }
-.odometer-100-par {
+._odometer-100-par {
   transition: --percent 2.4s;
   --temp: calc(var(--percent) * 100);
   --v1: max(var(--temp) - 0.5, 0);
