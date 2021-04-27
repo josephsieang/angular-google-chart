@@ -6,6 +6,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./station-yield.component.scss']
 })
 export class StationYieldComponent implements OnInit {
+  stationYields = [
+    {
+      stationName: 'Station 1',
+      stationYield: 14.67
+    },
+    {
+      stationName: 'Station 2',
+      stationYield: 18
+    },
+    {
+      stationName: 'Station 3',
+      stationYield: 14.55
+    }
+  ]
 
   constructor() { }
 

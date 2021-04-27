@@ -1,21 +1,9 @@
 <div class="steps">
   <ul>
-    <li class="step-item">
+    <li class="step-item" *ngFor="let stationYield of stationYields">
       <a class="menu-item">
-        <span class="step-number">12.67%</span>
-        <span class="step-title">Station 1</span>
-      </a>
-    </li>
-    <li class="step-item">
-      <a class="menu-item">
-        <span class="step-number">14%</span>
-        <span class="step-title">Station 2</span>
-      </a>
-    </li>
-    <li class="step-item">
-      <a class="menu-item">
-        <span class="step-number">16.67%</span>
-        <span class="step-title">Station 3</span>
+        <span class="step-number">{{ stationYield.stationYield + "%" }}</span>
+        <span class="step-title">{{ stationYield.stationNumber }}</span>
       </a>
     </li>
   </ul>
