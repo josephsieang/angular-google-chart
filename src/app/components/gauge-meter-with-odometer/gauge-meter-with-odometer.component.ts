@@ -24,7 +24,7 @@ export class GaugeMeterWithOdometerComponent implements OnInit {
     this.renderer.setStyle(this.realTimeProgress.nativeElement, '--lastNumerator', String(prevNumerator), 2);
     this.renderer.setAttribute(this.realTimeProgress.nativeElement, 'stroke-dasharray', `${prevNumerator}, 1413.75`);
 
-    this.curPercentage = this.prevPercentage + 80;
+    this.curPercentage = this.prevPercentage + 5;
     if (this.curPercentage >= 100) {
       this.curPercentage = 100;
     }
@@ -61,6 +61,6 @@ export class GaugeMeterWithOdometerComponent implements OnInit {
 
     setTimeout(() => {
       this.updateProgress();
-    }, 10000);
+    }, 3000);
   }
 }
