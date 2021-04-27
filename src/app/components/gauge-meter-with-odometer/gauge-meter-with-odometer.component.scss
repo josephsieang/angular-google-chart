@@ -1,0 +1,62 @@
+.container-gauge {
+  width: 340px;
+  height: auto;
+  position: relative;
+  display: flex;
+  justify-content: flex-start !important;
+
+  svg {
+    max-width: 100%;
+  }
+   
+  path {
+     stroke-width: 55;
+     fill: none;
+    
+  }
+  
+  .realtime-progress {
+    animation: progress 0.8s ease-out forwards;
+  }
+
+  .realtime-progress-40-par {
+    animation: progress 1.2s ease-out forwards;
+  }
+
+  .realtime-progress-60-par {
+    animation: progress 1.6s ease-out forwards;
+  }
+
+  .realtime-progress-80-par {
+    animation: progress 2s ease-out forwards;
+  }
+
+  .realtime-progress-100-par {
+    animation: progress 2.4s ease-out forwards;
+  }
+
+  .gauge-percentage {
+    // https://stackoverflow.com/questions/8508275/how-to-center-a-position-absolute-element
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    top: 40%;
+    font-size: 4rem;
+
+    .par {
+      vertical-align: middle;
+      line-height: initial;
+    }
+  }
+  
+  @keyframes progress {
+    from {
+      stroke-dasharray: var(--lastNumerator) 1413.75; 
+    }
+    to {
+      stroke-dasharray: var(--curNumerator) 1413.75; 
+    }
+  }
+}

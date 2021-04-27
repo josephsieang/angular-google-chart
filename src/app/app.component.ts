@@ -103,7 +103,7 @@ export class AppComponent implements AfterViewInit {
 
   showChart = false;
   showGaugeMeter = false;
-  showGaugeMeterWithOdometer = true;
+  showGaugeMeterWithOdometer = false;
   showGaugeMeterWithOdometerNpmPackage = false;
 
   percentage = 0;
