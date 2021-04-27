@@ -25,6 +25,9 @@ export class GaugeMeterWithOdometerComponent implements OnInit {
     this.renderer.setAttribute(this.realTimeProgress.nativeElement, 'stroke-dasharray', `${prevNumerator}, 1413.75`);
 
     this.curPercentage = this.prevPercentage + 80;
+    if (this.curPercentage >= 100) {
+      this.curPercentage = 100;
+    }
     this.wholeNumber = Math.round(this.curPercentage);
     const curNumerator = (this.curPercentage * 1413.75) / 100;
 
