@@ -1,11 +1,41 @@
 .steps {
   position: relative;
+  margin: 1rem;
 
   ul {
     padding: 0;
     margin: 0;
     list-style-type: none;
     display: flex;
+
+    // the start small circle
+    &::before {
+      position: absolute;
+      content: " ";
+      top: 50%;
+      margin-top: -2rem;
+      border: 1px solid #e9ecef;
+      background: #6F87A3;
+      min-width: 2rem;
+      height: 2rem;
+      z-index: 1;
+      border-radius: 50%;
+    }
+
+    // the end small circle
+    &::after {
+      position: absolute;
+      content: " ";
+      top: 50%;
+      right: 0;
+      margin-top: -2rem;
+      border: 1px solid #e9ecef;
+      background: #6F87A3;
+      min-width: 2rem;
+      height: 2rem;
+      z-index: 1;
+      border-radius: 50%;
+    }
 
     .step-item {
       position: relative;
