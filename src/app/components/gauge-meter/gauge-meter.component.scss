@@ -1,0 +1,62 @@
+@property --percent {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+
+.container-gauge {
+  width: 340px;
+  height: auto;
+  position: relative;
+  display: flex;
+  justify-content: flex-start !important;
+
+  svg {
+    max-width: 100%;
+  }
+   
+  path {
+     stroke-width: 55;
+     fill: none;
+  }
+
+  .gauge-percentage {
+    // https://stackoverflow.com/questions/8508275/how-to-center-a-position-absolute-element
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    top: 40%;
+    font-size: 4rem;
+
+    .par {
+      vertical-align: middle;
+      line-height: initial;
+    }
+  }
+
+  .numberUpdate {
+    transition: --percent var(--progressAnimationLength);
+    counter-reset: v1 var(--percent);
+  
+    &::before {
+      content: counter(v1)"%";
+    }
+  }
+
+  .realtime-progress {
+    animation: progress var(--progressAnimationLength) ease-out forwards;
+  }
+  
+  @keyframes progress {
+    from {
+      stroke-dasharray: var(--lastNumerator) 1413.75; 
+    }
+    to {
+      stroke-dasharray: var(--curNumerator) 1413.75; 
+    }
+  }
+}
+
+

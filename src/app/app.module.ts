@@ -7,10 +7,12 @@ import { GoogleChartsModule } from 'angular-google-charts';
 import { AngularResizedEventModule } from 'angular-resize-event';
 import { Ng9OdometerModule } from 'ng9-odometer';
 import { GaugeMeterWithOdometerComponent } from './components/gauge-meter-with-odometer/gauge-meter-with-odometer.component';
+import { GaugeMeterComponent } from './components/gauge-meter/gauge-meter.component';
 
 @NgModule({
   declarations: [
     GaugeMeterWithOdometerComponent,
+    GaugeMeterComponent,
     AppComponent
   ],
   imports: [

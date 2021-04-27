@@ -1,0 +1,22 @@
+<div class="container-gauge">
+  <svg viewBox="0 0 1000 530">
+    <path
+      stroke="#BCA4FF"
+      stroke-linecap="round"
+      d="M 50 500 A 450 450 0 0 1 950 500"
+    ></path>
+    <path
+      #realtimeProgress
+      class="realtime-progress"
+      stroke="none"
+      stroke-linecap="round"
+      d="M 50 500 A 450 450 0 0 1 950 500"
+      stroke-dasharray="0, 1413.75"
+    ></path>
+  </svg>
+  <div #numberUpdate class="gauge-percentage numberUpdate">
+  </div>
+</div>
+<button class="btn btn-primary" (click)="updateProgress()">
+  Update progress
+</button>
