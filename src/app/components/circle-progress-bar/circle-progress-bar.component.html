@@ -1,0 +1,40 @@
+<div class="wrapper">
+  <div class="chart-container">
+    <p class="gauge-percentage">
+      <ng9-odometer [number]="wholeNumber" [theme]="'default'"></ng9-odometer>
+      <span class="separator mx-1">/</span>
+      <span class="total-equipment">6</span>
+    </p>
+    <svg viewBox="0 0 36 36" class="circular-chart purple">
+      <path
+        class="circle-bg"
+        d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"
+      />
+      <path
+        #realtimeProgress
+        class="circle realtime-progress"
+        stroke="none"
+        stroke-dasharray="0, 100"
+        d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"
+      />
+
+      <filter id="circleShadow">
+        <feDropShadow dx="0" dy="0" stdDeviation="0.5" flood-color="#ECE6FA" />
+      </filter>
+      <circle
+        cx="18"
+        cy="18"
+        r="11"
+        class="percentage-bg"
+        filter="url(#circleShadow)"
+      />
+    </svg>
+  </div>
+</div>
+<button class="btn btn-primary" (click)="updateProgress()">
+  Update progress
+</button>
