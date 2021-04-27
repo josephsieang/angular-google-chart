@@ -13,6 +13,7 @@
       justify-content: center;
       flex: 1 1 auto;
 
+      // the middle line
       &::before {
         position: absolute;
         content: " ";
@@ -21,7 +22,8 @@
         top: 50%;
         left: 0;
         display: block;
-        margin-top: -0.2rem;
+        margin-top: -1.2rem;
+        z-index: -3;
       }
 
       .menu-item {
@@ -31,6 +33,7 @@
         overflow: hidden;
         text-decoration: none;
 
+        // outer border
         &::before {
           position: absolute;
           content: " ";
@@ -43,6 +46,18 @@
           border-radius: 50%;
           border: 3px solid #6F87A3;
           background-color: #ffffff;
+        }
+
+        // the space between the whole middle line and circle
+        &::after {
+          position: absolute;
+          content: " ";
+          top: -0.5rem;
+          width: 8.5rem;
+          height: 8.5rem;
+          border-radius: 50%;
+          background-color: #ffffff;
+          z-index: -1;
         }
 
         .step-number {
@@ -65,7 +80,7 @@
         .step-title {
           font-weight: 600;
           color: #495057;
-          margin-top: 0.5rem;
+          margin-top: 1rem;
         }
       }
     }
