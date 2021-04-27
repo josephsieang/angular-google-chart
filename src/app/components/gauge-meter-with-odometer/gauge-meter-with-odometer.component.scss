@@ -16,23 +16,7 @@
   }
   
   .realtime-progress {
-    animation: progress 0.8s ease-out forwards;
-  }
-
-  .realtime-progress-40-par {
-    animation: progress 1.2s ease-out forwards;
-  }
-
-  .realtime-progress-60-par {
-    animation: progress 1.6s ease-out forwards;
-  }
-
-  .realtime-progress-80-par {
-    animation: progress 2s ease-out forwards;
-  }
-
-  .realtime-progress-100-par {
-    animation: progress 2.4s ease-out forwards;
+    animation: progress var(--progressAnimationLength) ease-out forwards;
   }
 
   .gauge-percentage {
